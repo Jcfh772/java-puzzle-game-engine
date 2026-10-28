@@ -1,0 +1,70 @@
+size (10,10)
+start (1,5)
+goal (9,8)
+
+item "Sword" {
+    at (2,2), (10,5), (7,1)
+    message "Use Wisely."
+}
+
+item "Key" {
+    at (3,3)
+    message "Key for obstacle."
+}
+
+item "Map" {
+    at (2,6)
+}
+
+obstacle {
+    at (1,1), (2,3), (3,4), (4,5)
+    requires "Key", "Sword"
+}
+
+plugin edu.curtin.gameplugins.Teleport 
+plugin edu.curtin.gameplugins.Penalty
+
+script !{
+from edu.curtin.api import ItemCallback
+
+class MapRevealCallback(ItemCallback):
+    def onItemAcquired(self, itemName):
+        if "map" in itemName.lower() or "Map" in itemName:
+            print("The map reveals hidden locations!")
+            rows = api.getRows()
+            cols = api.getCols()
+            for r in range(rows):
+                for c in range(cols):
+                    if api.isGoalAt(r, c) or api.getItemAt(r, c) is not None:
+                        api.setVisibleAt(r, c, True)
+
+callback = MapRevealCallback()
+api.registerItemCallback(callback)
+}
+
+script !{
+from edu.curtin.api import ItemCallback, ObstacleCallback
+
+class CounterCallback(ItemCallback, ObstacleCallback):
+    def __init__(self):
+        self.itemCount = 0
+        self.obstacleCount = 0
+    
+    def onItemAcquired(self, itemName):
+        self.itemCount += 1
+        self.checkTotal()
+    
+    def onObstacleTraversed(self):
+        self.obstacleCount += 1
+        self.checkTotal()
+    
+    def checkTotal(self):
+        total = self.itemCount + self.obstacleCount
+        if total == 5:
+            print("\nAchievement unlocked! Bonus item added to inventory!")
+            api.addItemToInventory("Bonus Star")
+
+counter = CounterCallback()
+api.registerItemCallback(counter)
+api.registerObstacleCallback(counter)
+}

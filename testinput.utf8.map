@@ -1,0 +1,40 @@
+size   ( 14  , 12  )
+  start (2,11)
+goal  (  11  ,
+ 4  )   obstacle {
+  at (7,3), (6,1), (2,3), (5,4)
+  requires "white key"
+}
+
+obstacle {
+  at (9,8), (13,0), (9,6), (7,7), (13,1)
+  requires "white key"
+}
+
+obstacle {
+  at (8,10), (13,11), (2,4), (3,9), (10,8)
+  requires "white key"
+}
+
+plugin XnUXR.GO.LyKr.bI.mwNEX.xq
+
+item "white key" {
+  at (3,7), (5,0), (0,0), (8,6), (3,10), (6,6), (11,11), (8,1), (2,10), (6,8), (2,5), (8,0), (9,2), (4,9), (11,1), (0,8), (4,1)
+  message "x;gPHv"
+}
+
+plugin kKa.SJt.Hx
+
+obstacle {
+  at (9,10), (7,6), (1,6), (12,0)
+  requires "white key"
+}
+
+script !{
+@{5kkUvDy`3*ZczB:u  !v Tjv9ftp6Fb(b:)qg
+SH34eM_O-HE3`u!HytL??Fe/rDZ?asU6t{M5@
+Byb u1O[hJ v3r;
+BZx
+Qh3
+}
+

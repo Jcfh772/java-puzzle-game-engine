@@ -1,0 +1,16 @@
+plugins {
+    id 'pmd'
+}
+
+dependencies {
+    implementation project(':api')
+    implementation project(':app')
+}
+
+pmd {
+    consoleOutput = true
+    toolVersion = "7.15.0"
+    rulesMinimumPriority = 5
+    ruleSets = []
+    ruleSetFiles = files("../saed-pmd-rules.xml")
+}
